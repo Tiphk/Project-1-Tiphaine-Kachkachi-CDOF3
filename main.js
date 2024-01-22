@@ -1,10 +1,11 @@
 const { spawn } = require('child_process');
 const readline = require('readline');
 
-const player_name = readline.createInterface({
+const ask = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+
 
 function typeText(text) {
 
@@ -23,31 +24,38 @@ function typeText(text) {
 
 }
 
-function Name(){
-    var whatsName = "First, please provide your name :"
-    typeText(whatsName)
-    player_name.question("", (name) => {
-        console.log(`Hello, ${name}!`);
-        player_name.close();
+let player_name = ""
 
-        //TutoOftheGame();
+function Name(){
+    ask.question("", async (name) => {
+        if (name.trim() === "") {
+            await typeText("Please provide a valid name.");
+            Name();
+        } else {
+            await typeText("What a wonderful name. I'm sure " + name + " will be easy to carve on a grave!");
+            ask.close();
+            await typeText("Let us begin! You will now be transferred into another dimension. Your mission is to come back in this one safe and in one piece ! Good Luck");
+
+            player_name = name ;
+
+            TutoOftheGame();
+        }
     });
 }
 
 
-async function main(){
-    var intro = "Welcome new player. Are you ready to test your surviving skills ?" ;
-    var intro1 = "Whatever the answer we sure hope so " ;
-    await typeText(intro);
-    await typeText(intro1);
-    Name();
 
+async function main(){
+    await typeText("Welcome new player. Are you ready to test your surviving skills ?");
+    await typeText("Whatever the answer we sure hope so ");
+    await typeText("First, please provide your name :");
+    Name();
 }
 
 function TutoOftheGame(){
 
     // Launch the second script
-    const secondScript = spawn('node', ['tuto.js']);
+    const secondScript = spawn('node', ['test.js']);
 // Handle the output of the second script
     secondScript.stdout.on('data', (data) => {
         console.log(`${data}`);
