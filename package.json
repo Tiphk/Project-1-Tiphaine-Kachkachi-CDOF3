@@ -1,0 +1,22 @@
+{
+  "name": "project-1-tiphaine-kachkachi-cdof3",
+  "version": "1.0.0",
+  "description": "Td1 Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tiphk/Project-1-Tiphaine-Kachkachi-CDOF3.git"
+  },
+  "author": "Tiphaine Kachkachi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tiphk/Project-1-Tiphaine-Kachkachi-CDOF3"
+  },
+  "homepage": "https://github.com/Tiphk/Project-1-Tiphaine-Kachkachi-CDOF3#readme",
+  "dependencies": {
+    "puppeteer": "^21.7.0"
+  }
+}
