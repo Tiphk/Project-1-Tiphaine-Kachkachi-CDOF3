@@ -1,4 +1,3 @@
-
 const readline = require('readline');
 function typeText(text,time) {
 
