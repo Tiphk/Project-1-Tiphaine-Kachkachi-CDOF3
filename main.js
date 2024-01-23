@@ -1,40 +1,24 @@
 const { spawn } = require('child_process');
 const readline = require('readline');
 
+const { typeText } = require('./src/typescript.js');
+
 const ask = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
-
-function typeText(text) {
-
-    return new Promise(resolve => {
-        for (let i = 0; i < text.length; i++) {
-            setTimeout(() => {
-                process.stdout.write(text[i]);
-
-                if (i === text.length - 1) {
-                    console.log(); // Print a new line after the last character is displayed
-                    resolve(); // Resolve the promise when typing is completed
-                }
-            }, 55 * i); // Wait 55 milliseconds for each character (adjust the delay as needed)
-        }
-    });
-
-}
-
 let player_name = ""
 
 function Name(){
     ask.question("", async (name) => {
-        if (name.trim() === "") {
-            await typeText("Please provide a valid name.");
+        if (name.trim() === "" || name.length >= 100) {
+            await typeText("Please provide a valid name. Not too short or too long",55);
             Name();
         } else {
-            await typeText("What a wonderful name. I'm sure " + name + " will be easy to carve on a grave!");
+            await typeText("What a wonderful name. I'm sure " + name + " will be easy to carve on a grave !",55);
             ask.close();
-            await typeText("Let us begin! You will now be transferred into another dimension. Your mission is to come back in this one safe and in one piece ! Good Luck");
+            await typeText("Let us begin! You will now be transferred into another dimension. Your mission is to come back in this one safe and in one piece ! Good Luck",55);
 
             player_name = name ;
 
@@ -43,19 +27,21 @@ function Name(){
     });
 }
 
-
-
 async function main(){
-    await typeText("Welcome new player. Are you ready to test your surviving skills ?");
-    await typeText("Whatever the answer we sure hope so ");
-    await typeText("First, please provide your name :");
+    await typeText(" ",10);
+    await typeText("=================Charging=================",20);
+    await typeText(" ",10);
+
+    await typeText("Welcome new player. Are you ready to test your surviving skills ?",55);
+    await typeText("Whatever the answer we sure hope so ",55);
+    await typeText("First, please provide your name :",55);
     Name();
 }
 
 function TutoOftheGame(){
 
     // Launch the second script
-    const secondScript = spawn('node', ['test.js']);
+    const secondScript = spawn('node', ['./src/intro.js']);
 // Handle the output of the second script
     secondScript.stdout.on('data', (data) => {
         console.log(`${data}`);
@@ -73,4 +59,4 @@ function TutoOftheGame(){
 
 }
 
-main();
+main().then(r => {});
