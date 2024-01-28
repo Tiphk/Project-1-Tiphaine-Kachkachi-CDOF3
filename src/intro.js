@@ -73,6 +73,24 @@ async function Page() {
         output: process.stdout
     });
 
+    process.stdin.on('data', async (data) => {
+        const number = data.toString().trim();
+        if (number === "1" || number === "2") //page12
+        {
+            await typeText(page12, 3);
+            await typeText("This is the first page, you already read it. Change page : ", 55);
+            await Page();
+        } else if (number === "3" || number === "4") //page12
+        {
+            await typeText(page34, 3);
+            await typeText("Enter anything to start the story", 55);
+            ask.close();
+            Go();
+        } else {
+            await typeText("Please provide a valid page number (1 to 4)", 55);
+            await Page();
+        }
+    });
 
     ask.question("", async (number) => {
 
@@ -93,24 +111,7 @@ async function Page() {
         }
     });
 
-    process.stdin.on('data', async (data) => {
-        const number = data.toString().trim();
-        if (number === "1" || number === "2") //page12
-        {
-            await typeText(page12, 3);
-            await typeText("This is the first page, you already read it. Change page : ", 55);
-            await Page();
-        } else if (number === "3" || number === "4") //page12
-        {
-            await typeText(page34, 3);
-            await typeText("Enter anything to start the story", 55);
-            ask.close();
-            Go();
-        } else {
-            await typeText("Please provide a valid page number (1 to 4)", 55);
-            await Page();
-        }
-    });
+
 
 
 
