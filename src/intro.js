@@ -45,21 +45,21 @@ let page34 = "\n" +
 
 let bool_next_page_success = false;
 async function main(){
-
-    //on fait un petit message subliminal pour faire patienter
-    await typeText(" ",10);
-    await typeText("=================Charging=================",20);
-    await typeText(" ",10);
-
     /*
+        //on fait un petit message subliminal pour faire patienter
+        await typeText(" ",10);
+        await typeText("=================Charging=================",20);
+        await typeText(" ",10);
 
-    await typeText("It looks like you were transferred into a medieval village as a small, young, and poor boy.",55);
-    await typeText("Oh your information sheet even talks about your missing father and your (almost) dead mother !",55);
-    await typeText("Here take a look :",55);
 
-    await typeText(page12,3);
 
-     */
+        await typeText("It looks like you were transferred into a medieval village as a small, young, and poor boy.",55);
+        await typeText("Oh your information sheet even talks about your missing father and your (almost) dead mother !",55);
+        await typeText("Here take a look :",55);
+
+        await typeText(page12,3);
+
+         */
     await typeText("Try to go onto the next page by entering the page number you want to see :",55);
 
     await Page();
@@ -67,54 +67,37 @@ async function main(){
 }
 
 async function Page() {
-
     const ask = readline.createInterface({
         input: process.stdin,
         output: process.stdout
     });
 
-    process.stdin.on('data', async (data) => {
-        const number = data.toString().trim();
-        if (number === "1" || number === "2") //page12
-        {
-            await typeText(page12, 3);
-            await typeText("This is the first page, you already read it. Change page : ", 55);
-            await Page();
-        } else if (number === "3" || number === "4") //page12
-        {
-            await typeText(page34, 3);
-            await typeText("Enter anything to start the story", 55);
-            ask.close();
-            Go();
-        } else {
-            await typeText("Please provide a valid page number (1 to 4)", 55);
-            await Page();
-        }
+    // Wrap the question in a Promise
+    const askQuestion = (prompt) => new Promise((resolve) => {
+        ask.question(prompt, resolve);
     });
 
-    ask.question("", async (number) => {
+    try {
+        await typeText("here", 55);
 
-        if (number === "1" || number === "2") //page12
-        {
-            await typeText(page12, 3);
+        const number = await askQuestion("Enter a number: ");
+
+        if (number === "1" || number === "2") {
             await typeText("This is the first page, you already read it. Change page : ", 55);
-            await Page();
-        } else if (number === "3" || number === "4") //page12
-        {
-            await typeText(page34, 3);
+            // Additional logic...
+        } else if (number === "3" || number === "4") {
             await typeText("Enter anything to start the story", 55);
             ask.close();
-            Go();
+            // Additional logic...
         } else {
             await typeText("Please provide a valid page number (1 to 4)", 55);
-            await Page();
+            // Additional logic...
         }
-    });
-
-
-
-
-
+    } catch (error) {
+        console.error("Error in Page:", error);
+    } finally {
+        ask.close();
+    }
 }
 
 function Go(){

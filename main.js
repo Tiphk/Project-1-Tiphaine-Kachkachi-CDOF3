@@ -65,13 +65,6 @@ async function main(){
 }
 
 function TutoOftheGame(){
-/*
-    const secondScript = spawn('node', ['./src/intro.js']);
-
-    secondScript.stdout.pipe(process.stdout);
-    secondScript.stdin.pipe(process.stdin);
-
- */
 
     const rl = readline.createInterface({
         input: process.stdin,
@@ -83,28 +76,24 @@ function TutoOftheGame(){
     });
 
     rl.on('line', (input) => {
-        secondScript.stdin.write(input);
+        console.log(`[Script 1] Sending input to Script 2: ${input}`);
+        secondScript.stdin.write(input + '\n');
     });
 
     secondScript.stdout.on('data', (data) => {
+        console.log(`[Script 1] Received output from Script 2: ${data.toString()}`);
         process.stdout.write(data.toString());
     });
 
-    // Handle any errors that occur in the second script
-    secondScript.on('error', (err) => {
-        console.error(`Error occurred in second script: ${err}`);
-    });
-
-   // Handle the completion of the second script
     secondScript.on('close', (code) => {
-        console.log(`Second script exited with code ${code}`);
-        process.exit();
+        console.log(`[Script 1] Second script exited with code ${code}`);
+        rl.close();
     });
 
     rl.on('SIGINT', () => {
         secondScript.kill('SIGINT');
+        process.exit();
     });
-
 }
 
 main().then(r => {});
