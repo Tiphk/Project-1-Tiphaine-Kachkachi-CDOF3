@@ -9,7 +9,7 @@ function TutoOftheGame() {
         output: process.stdout
     });
 
-    const secondScript = spawn('node', ['./src/test.js'], {
+    const secondScript = spawn('node', ['./src/intro.js'], {
         stdio: ['pipe', 'pipe', 'inherit']
     });
 

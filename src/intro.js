@@ -1,9 +1,6 @@
-const fs = require('fs');
+const readline = require('readline');
 const { typeText } = require('./typescript/typescript.js');
-const { typeBold } = require('./typescript/typescript_bold.js');
-
-const { spawn } = require('child_process');
-const readline = require("readline");
+const {spawn} = require("child_process");
 
 let page12 = "\n"+
     "==================================================================================================\n" +
@@ -43,32 +40,53 @@ let page34 = "\n" +
     "-                                              3 =                                             4 -\n" +
     "==================================================================================================\n" ;
 
-let bool_next_page_success = false;
-async function main(){
-    /*
-        //on fait un petit message subliminal pour faire patienter
-        await typeText(" ",10);
-        await typeText("=================Charging=================",20);
-        await typeText(" ",10);
+async function Page() {
+    try {
+        const number = await askQuestion("");
+        //console.log(`[Script 2] Received input from Script 1: ${number}`);
 
-        await typeText("It looks like you were transferred into a medieval village as a small, young, and poor boy.",55);
-        await typeText("Oh your information sheet even talks about your missing father and your (almost) dead mother !",55);
-        await typeText("Here take a look :",55);
+        if (number === "1" || number === "2") {
+            await typeText("This is the first page, you already read it. Change page : ", 55);
+            await Page();
 
-        await typeText(page12,3);
+        } else if (number === "3" || number === "4") {
+            //await typeText(page34,3);
 
-         */
-    await typeText("Try to go onto the next page by entering the page number you want to see :",55);
+            await Start();
 
-    await Page();
+        } else {
+            await typeText("Please provide a valid page number (1 to 4)", 55);
+            await Page();
 
+        }
+    } catch (error) {
+        console.error("[Script 2] Error in Page:", error);
+    } finally {
+        //ask.close();
+    }
 }
+
+async function Start() {
+    await typeText("When you're ready, enter anything to start the story", 55);
+    try {
+        const number = await askQuestion("");
+        //console.log(`[Script 2] Received input from Script 1: ${number}`);
+
+        launchScript3();
+
+    } catch (error) {
+        console.error("[Script 2] Error in Page:", error);
+    } finally {
+        //ask.close();
+    }
+}
+
 
 function askQuestion(promptText) {
     return new Promise((resolve, reject) => {
         const ask = readline.createInterface({
             input: process.stdin,
-            output: process.stdout
+           output: process.stdout
         });
         ask.question(promptText, (answer) => {
             ask.close();
@@ -76,114 +94,44 @@ function askQuestion(promptText) {
         });
     });
 }
+
+async function main(){
+
+    /*
+
+    await typeText("It looks like you were transferred into a medieval village as a small, young, and poor boy.",55);
+    await typeText("Oh your information sheet even talks about your missing father and your (almost) dead mother !",55);
+    await typeText("Here take a look :",55);
+    await typeText(page12,3);
+
+
+     */
+    await typeText("Try to go onto the next page by entering the page number you want to see :",55);
+    await Page();
+
+}
+
+main();
+
+function launchScript3(dataToSend) {
+    const thirdScript = spawn('node', ['./src/mission1.js'], {
+        stdio: ['pipe', 'pipe', 'inherit']
+    });
+
+    thirdScript.stdin.write(JSON.stringify(dataToSend) + '\n');
+
+    thirdScript.stdout.on('data', (data) => {
+        process.stdout.write(data.toString());
+    });
+
+    thirdScript.on('close', (code) => {
+        console.log("Script 3 exited with code", code);
+    });
+}
 /*
-async function Page() {
-    const ask = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
-
-    // Wrap the question in a Promise
-    const askQuestion = (prompt) => new Promise((resolve) => {
-        ask.question(prompt, resolve);
-    });
-
-    try {
-        await typeText("here", 55);
-
-        const number = await askQuestion("Enter a number: ");
-
-        if (number === "1" || number === "2") {
-            await typeText("This is the first page, you already read it. Change page : ", 55);
-            // Additional logic...
-        } else if (number === "3" || number === "4") {
-            await typeText("Enter anything to start the story", 55);
-            ask.close();
-            // Additional logic...
-        } else {
-            await typeText("Please provide a valid page number (1 to 4)", 55);
-            // Additional logic...
-        }
-    } catch (error) {
-        console.error("Error in Page:", error);
-    } finally {
-        ask.close();
-    }
+async function typeText(text, delay) {
+   // console.log(`[Script 2] Outputting text: ${text}`);
+    await new Promise(resolve => setTimeout(resolve, delay));
 }
 
  */
-
-async function Page() {
-    const ask = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
-
-    try {
-        await typeText("here", 55);
-
-        const number = await askQuestion("Enter a number: ");
-        console.log(`[Script 2] Received input from Script 1: ${number}`);
-
-        if (number === "1" || number === "2") {
-            await typeText("This is the first page, you already read it. Change page : ", 55);
-            // Additional logic...
-        } else if (number === "3" || number === "4") {
-            await typeText("Enter anything to start the story", 55);
-            // Additional logic...
-        } else {
-            await typeText("Please provide a valid page number (1 to 4)", 55);
-            // Additional logic...
-        }
-    } catch (error) {
-        console.error("[Script 2] Error in Page:", error);
-    } finally {
-        ask.close();
-    }
-
-}
-
-function Go(){
-    const ask1 = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
-
-    ask1.question("", async (number) => {
-
-        await typeBold("Great ! Now that you are aware of your surroundings I will leave you be. ",55);
-        await typeText("...",55);
-        ask1.close();
-        To_First_Mission();
-
-    });
-/*
-    process.stdin.on('data', async (data) => {
-        await typeBold("Great ! Now that you are aware of your surroundings I will leave you be. ",55);
-        await typeText("...",55);
-        To_First_Mission();
-    });
-
- */
-}
-
-function To_First_Mission(){
-
-    const secondScript = spawn('node', ['./src/mission1.js']);
-
-    secondScript.stdout.pipe(process.stdout);
-    // Handle any errors that occur in the second script
-    secondScript.on('error', (err) => {
-        console.error(`Error occurred in second script: ${err}`);
-    });
-
-    // Handle the completion of the second script
-    secondScript.on('close', (code) => {
-        console.log(`Second script exited with code ${code}`);
-        process.exit();
-    });
-
-}
-
-
-main().then(r => {});
