@@ -51,8 +51,6 @@ async function main(){
         await typeText("=================Charging=================",20);
         await typeText(" ",10);
 
-
-
         await typeText("It looks like you were transferred into a medieval village as a small, young, and poor boy.",55);
         await typeText("Oh your information sheet even talks about your missing father and your (almost) dead mother !",55);
         await typeText("Here take a look :",55);
@@ -66,6 +64,19 @@ async function main(){
 
 }
 
+function askQuestion(promptText) {
+    return new Promise((resolve, reject) => {
+        const ask = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout
+        });
+        ask.question(promptText, (answer) => {
+            ask.close();
+            resolve(answer);
+        });
+    });
+}
+/*
 async function Page() {
     const ask = readline.createInterface({
         input: process.stdin,
@@ -98,6 +109,38 @@ async function Page() {
     } finally {
         ask.close();
     }
+}
+
+ */
+
+async function Page() {
+    const ask = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    try {
+        await typeText("here", 55);
+
+        const number = await askQuestion("Enter a number: ");
+        console.log(`[Script 2] Received input from Script 1: ${number}`);
+
+        if (number === "1" || number === "2") {
+            await typeText("This is the first page, you already read it. Change page : ", 55);
+            // Additional logic...
+        } else if (number === "3" || number === "4") {
+            await typeText("Enter anything to start the story", 55);
+            // Additional logic...
+        } else {
+            await typeText("Please provide a valid page number (1 to 4)", 55);
+            // Additional logic...
+        }
+    } catch (error) {
+        console.error("[Script 2] Error in Page:", error);
+    } finally {
+        ask.close();
+    }
+
 }
 
 function Go(){
