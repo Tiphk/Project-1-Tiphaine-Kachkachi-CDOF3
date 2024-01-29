@@ -118,14 +118,28 @@ function launchScript3(dataToSend) {
         stdio: ['pipe', 'pipe', 'inherit']
     });
 
-    thirdScript.stdin.write(JSON.stringify(dataToSend) + '\n');
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    rl.on('line', (input) => {
+        // console.log(`[Script 1] Sending input to Script 3: ${input}`);
+        thirdScript.stdin.write(input + '\n');
+    });
 
     thirdScript.stdout.on('data', (data) => {
         process.stdout.write(data.toString());
     });
 
     thirdScript.on('close', (code) => {
-        console.log("Script 3 exited with code", code);
+        //console.log(`[Script 1] Second script exited with code ${code}`);
+        rl.close();
+    });
+
+    rl.on('SIGINT', () => {
+        thirdScript.kill('SIGINT');
+        process.exit();
     });
 }
 /*
