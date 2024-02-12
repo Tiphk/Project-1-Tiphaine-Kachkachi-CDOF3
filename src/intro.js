@@ -50,7 +50,7 @@ async function Page() {
             await Page();
 
         } else if (number === "3" || number === "4") {
-            //await typeText(page34,3);
+            await typeText(page34,3);
 
             await Start();
 
@@ -97,7 +97,7 @@ function askQuestion(promptText) {
 
 async function main(){
 
-    /*
+
 
     await typeText("It looks like you were transferred into a medieval village as a small, young, and poor boy.",55);
     await typeText("Oh your information sheet even talks about your missing father and your (almost) dead mother !",55);
@@ -105,7 +105,6 @@ async function main(){
     await typeText(page12,3);
 
 
-     */
     await typeText("Try to go onto the next page by entering the page number you want to see :",55);
     await Page();
 

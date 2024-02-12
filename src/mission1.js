@@ -147,8 +147,8 @@ async function Rumor_result(response) {
     console.log("\n");
     switch (response) {
         case 1:
-            await typeColor("What do you mean 'What rumor ?' you leave here everybody knows that rumor around here.", 55, '\x1b[36m');
-            await typeColor("I'm talking about the rumor saying that many Princes tried to save the Princess living in the tower ages ages !",55, '\x1b[36m');
+            await typeColor("What do you mean 'What rumor ?' you live here everybody knows that rumor around here.", 55, '\x1b[36m');
+            await typeColor("I'm talking about the rumor saying that many Princes tried to save the Princess living in the tower ages ago !",55, '\x1b[36m');
             await typeColor("She's dead now and every so-called monsters in it are too ",55, '\x1b[36m');
             break;
         case  2 :
@@ -394,12 +394,38 @@ async function AcceptMission(){
             charabiaCOUNT ++;
             response = 0;
         }
-        //await DisagreeLastChance_result(response);
+        await AcceptMission_result(response);
 
     } catch (error) {
         console.error("[Script 2] Error in Page:", error);
     } finally {
         //ask.close();
+    }
+}
+
+async function AcceptMission_result(response){
+    console.log("\n");
+    switch (response) {
+        case 1:
+            await typeColor("Great let's go then, we have to walk two hours in the forest before getting to the tower", 55, '\x1b[36m');
+            break;
+        case 2:
+            await typeColor("No. Choose now, because I'm leaving towards to tower right away.", 55, '\x1b[36m');
+            break;
+        case 3:
+            await typeColor("Oh. Well stay poor then. Goodbye.", 55, '\x1b[36m');
+            await End(4);
+            break;
+        case 4:
+            await typeColor("Is that a yes or no ?", 55, '\x1b[36m');
+            await typeColor("Ok you now what ? I need someone that can answer when asked something, so forget it. I'll find someone else", 55, '\x1b[36m');
+            await End(2);
+            break;
+        case 5:
+            await typeColor("What does that mean ?", 55, '\x1b[36m');
+            await typeColor("Ok you now what ? I need someone that can answer clearly when asked something, so forget it. I'll find someone else", 55, '\x1b[36m');
+            await End(3);
+            break;
     }
 }
 
@@ -418,6 +444,11 @@ async function End(end_number){
             await typeColor("You failed your mission. You were supposed to discover the truth about the Tower, but the solder decided not to take you with him because you spoke a weird language.",55, '\x1b[31m');
             await typeColor("You are now stuck in this dimension. Goodbye.",55, '\x1b[31m');
             break;
+        case 4: //fail : you refused the mission
+            await typeColor("You refused the mission. What were you thinking ? You were supposed to discover the truth about the Tower and you said no.",55, '\x1b[31m');
+            await typeColor("You are now stuck forever in this dimension.",55, '\x1b[31m');
+            break;
+
         default:
             await typeColor("You failed your mission. You were supposed to discover the truth about the Tower.",55, '\x1b[31m');
 

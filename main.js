@@ -35,18 +35,16 @@ function TutoOftheGame() {
 
 async function main(){
 
-    /*
+
 
     await typeText(" ",10);
     await typeText("=================Charging=================",20);
     await typeText(" ",10);
 
-     */
 
     await YesNo_No_Answer();
     await Name();
 
-    /*
 
     await typeText("Let us begin ! You will now be transferred into another dimension. Your mission is to come back in this one safe (and in one piece) ! Good Luck.", 55);
 
@@ -54,7 +52,6 @@ async function main(){
     await typeText("=================Charging=================",20);
     await typeText(" ",10);
 
-     */
 
     TutoOftheGame();
 }
