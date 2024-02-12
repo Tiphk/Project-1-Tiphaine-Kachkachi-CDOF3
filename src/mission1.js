@@ -22,11 +22,12 @@ let disagreeCOUNT =0 ;
 let charabiaCOUNT = 0;
 
 let color_cyan = '\x1b[36m';
+let color_red ='\x1b[31m';
 
 async function main(){
 
-    await typeColor("Hey ! You, over there !",55, color_cyan);
-    await typeColor("The kid with the flowers ! I'm talking to you.",55, color_cyan);
+    await typeColor("Hey ! You, over there !",55, color_red);
+    await typeColor("The kid with the flowers ! I'm talking to you.",55, color_red);
 
     await Start();
 }
@@ -77,20 +78,20 @@ async function Start_result(response) {
     console.log("\n");
     switch (response) {
         case 1:
-            await typeColor("I have a job to offer you ! I pay good money !", 55, color_cyan);
+            await typeColor("I have a job to offer you ! I pay good money !", 55, color_red);
             break;
         case 2:
-            await typeColor("I have money to give ! You are poor right ? Of course you're poor look at you...", 55, color_cyan);
+            await typeColor("I have money to give ! You are poor right ? Of course you're poor look at you...", 55, color_red);
             break;
         case 3:
-            await typeColor("Don't be so mean... I have money to give ! You are poor right ? Of course you're poor look at you...", 55, color_cyan);
+            await typeColor("Don't be so mean... I have money to give ! You are poor right ? Of course you're poor look at you...", 55, color_red);
             break;
         default:
-            await typeColor("Err.. What did you say ? ",55, color_cyan);
-            await typeColor("Okay whatever I have a job to offer you, and you will get paid !",55, color_cyan);
+            await typeColor("Err.. What did you say ? ",55, color_red);
+            await typeColor("Okay whatever I have a job to offer you, and you will get paid !",55, color_red);
             break;
     }
-    await typeColor("Listen up, I'm a solder from far away and I heard about the rumor of the old Tower.",55, color_cyan);
+    await typeColor("Listen up, I'm a solder from far away and I heard about the rumor of the old Tower.",55, color_red);
     await Rumor();
 
 }
@@ -148,36 +149,36 @@ async function Rumor_result(response) {
     console.log("\n");
     switch (response) {
         case 1:
-            await typeColor("What do you mean 'What rumor ?' you live here everybody knows that rumor around here.", 55, color_cyan);
-            await typeColor("I'm talking about the rumor saying that many Princes tried to save the Princess living in the tower ages ago !",55, color_cyan);
-            await typeColor("She's dead now and every so-called monsters in it are too ",55, color_cyan);
+            await typeColor("What do you mean 'What rumor ?' you live here everybody knows that rumor around here.", 55, color_red);
+            await typeColor("I'm talking about the rumor saying that many Princes tried to save the Princess living in the tower ages ago !",55, color_red);
+            await typeColor("She's dead now and every so-called monsters in it are too ",55, color_red);
             break;
         case  2 :
-            await typeColor("... Okay hum... So I was thinking of a way to make money and the rumor states that many princes tries to save the Princess back in the days. ", 55, color_cyan);
+            await typeColor("... Okay hum... So I was thinking of a way to make money and the rumor states that many princes tries to save the Princess back in the days. ", 55, color_red);
             break;
         case 3 :
-            await typeColor("Stupid rumor you say ? Haha... I'll act as if you didn't just say that.", 55, color_cyan);
-            await typeColor("Anyway that rumor talks about the many Princes that tried to save the Princess and died. ", 55, color_cyan);
+            await typeColor("Stupid rumor you say ? Haha... I'll act as if you didn't just say that.", 55, color_red);
+            await typeColor("Anyway that rumor talks about the many Princes that tried to save the Princess and died. ", 55, color_red);
             break;
         case  4 :
-            await typeColor("Silent again. Huh.", 55, color_cyan);
-            await typeColor("... So I was thinking of a way to make money and the rumor states that many princes tries to save the Princess back in the days. ", 55, color_cyan);
+            await typeColor("Silent again. Huh.", 55, color_red);
+            await typeColor("... So I was thinking of a way to make money and the rumor states that many princes tries to save the Princess back in the days. ", 55, color_red);
             break;
         case  5 :
-            await typeColor("Stating I'm wrong again. Alright.", 55, color_cyan);
-            await typeColor("Anyway that rumor talks about the many Princes that tried to save the Princess and died.", 55, color_cyan);
+            await typeColor("Stating I'm wrong again. Alright.", 55, color_red);
+            await typeColor("Anyway that rumor talks about the many Princes that tried to save the Princess and died.", 55, color_red);
             break;
         case  6 :
-            await typeColor("Speaking in another language again.", 55, color_cyan);
-            await typeColor("Many Princes tried to save the Princess, but it's been ages ! She's dead and every so-called monsters in it are too ",55, color_cyan);
+            await typeColor("Speaking in another language again.", 55, color_red);
+            await typeColor("Many Princes tried to save the Princess, but it's been ages ! She's dead and every so-called monsters in it are too ",55, color_red);
             break;
 
         default:
-            await typeColor("Okay...",55, color_cyan);
-            await typeColor("Many Princes tried to save the Princess, but it's been ages ! She's dead and every so-called monsters in it are too ",55, color_cyan);
+            await typeColor("Okay...",55, color_red);
+            await typeColor("Many Princes tried to save the Princess, but it's been ages ! She's dead and every so-called monsters in it are too ",55, color_red);
             break;
     }
-    await typeColor("And Princes are mad rich... They probably had gold on their clothes and many gems on their swords... Right ?",55, color_cyan);
+    await typeColor("And Princes are mad rich... They probably had gold on their clothes and many gems on their swords... Right ?",55, color_red);
     await Gems();
 }
 
@@ -233,44 +234,44 @@ async function Gems_results(response) {
     console.log("\n");
     switch (response) {
         case 0:
-            await typeColor("You don't talk much, do you ?", 55, color_cyan);
-            await typeColor("Alright well... my plan is to go in the tower, get out gold from the princes dead body and I need you to make sure nobody goes in.", 55, color_cyan);
+            await typeColor("You don't talk much, do you ?", 55, color_red);
+            await typeColor("Alright well... my plan is to go in the tower, get out gold from the princes dead body and I need you to make sure nobody goes in.", 55, color_red);
             await AcceptMission();
             break;
         case 1:
-            await typeColor("Yeah I know. So... here my plan. I need you to wait for me outside the tower and make sure nobody goes in. I'll pay you once I'm done.", 55, color_cyan);
-            await typeColor("Are you in ? ", 55, color_cyan);
+            await typeColor("Yeah I know. So... here my plan. I need you to wait for me outside the tower and make sure nobody goes in. I'll pay you once I'm done.", 55, color_red);
+            await typeColor("Are you in ? ", 55, color_red);
             await AcceptMission();
             break;
         case 2:
-            await typeColor("...", 55, color_cyan);
-            await typeColor("Listen buddy. Don't ever disagree with me. Ever again. Got it ?", 55, color_cyan);
+            await typeColor("...", 55, color_red);
+            await typeColor("Listen buddy. Don't ever disagree with me. Ever again. Got it ?", 55, color_red);
             await DisagreeLastChance();
             break;
         case 3:
-            await typeColor("... What ? Hum ok ?", 55, color_cyan);
-            await typeColor("Yeah I know. So... here my plan. I need you to wait for me outside the tower and make sure nobody goes in. I'll pay you once I'm done.", 55, color_cyan);
-            await typeColor("Are you in ? ", 55, color_cyan);
+            await typeColor("... What ? Hum ok ?", 55, color_red);
+            await typeColor("Yeah I know. So... here my plan. I need you to wait for me outside the tower and make sure nobody goes in. I'll pay you once I'm done.", 55, color_red);
+            await typeColor("Are you in ? ", 55, color_red);
             await AcceptMission();
             break;
         case 4:
-            await typeColor("... This again ? I don't get what you're saying.", 55, color_cyan);
-            await typeColor("Yeah I don't think this is going to work out if I can't understand you...", 55, color_cyan);
-            await typeColor("Forget it. I'll ask someone else. Goodbye.", 55, color_cyan);
+            await typeColor("... This again ? I don't get what you're saying.", 55, color_red);
+            await typeColor("Yeah I don't think this is going to work out if I can't understand you...", 55, color_red);
+            await typeColor("Forget it. I'll ask someone else. Goodbye.", 55, color_red);
             await End(3);
             break;
         case 5:
-            await typeColor("...", 55, color_cyan);
-            await typeColor("You have a gift to annoy me.", 55, color_cyan);
-            await typeColor("I was going to ask you to come with me but... nevermind I don't want you anymore", 55, color_cyan);
-            await typeColor("Good luck getting out of poverty looser.", 55, color_cyan);
+            await typeColor("...", 55, color_red);
+            await typeColor("You have a gift to annoy me.", 55, color_red);
+            await typeColor("I was going to ask you to come with me but... nevermind I don't want you anymore", 55, color_red);
+            await typeColor("Good luck getting out of poverty looser.", 55, color_red);
             await End(1);
             break;
         default:
-            await typeColor("...", 55, color_cyan);
-            await typeColor("You are so annoying.", 55, color_cyan);
-            await typeColor("I was going to ask you to come with me but... nevermind I don't want you anymore", 55, color_cyan);
-            await typeColor("Good luck getting out of poverty looser.", 55, color_cyan);
+            await typeColor("...", 55, color_red);
+            await typeColor("You are so annoying.", 55, color_red);
+            await typeColor("I was going to ask you to come with me but... nevermind I don't want you anymore", 55, color_red);
+            await typeColor("Good luck getting out of poverty looser.", 55, color_red);
             await End(2);
             break;
     }
@@ -324,37 +325,37 @@ async function DisagreeLastChance_result(response){
     console.log("\n");
     switch (response) {
         case 1:
-            await typeColor("Good.", 55, color_cyan);
-            await typeColor("Are you in ? ", 55, color_cyan);
+            await typeColor("Good.", 55, color_red);
+            await typeColor("Are you in ? ", 55, color_red);
             await AcceptMission();
             break;
         case 2:
-            await typeColor("Staying silent huh. Well it's better than stating i'm wrong.", 55, color_cyan);
-            await typeColor("Alright well... my plan is to go in the tower, get out gold from the princes dead body and I need you to make sure nobody goes in.", 55, color_cyan);
+            await typeColor("Staying silent huh. Well it's better than stating i'm wrong.", 55, color_red);
+            await typeColor("Alright well... my plan is to go in the tower, get out gold from the princes dead body and I need you to make sure nobody goes in.", 55, color_red);
             await AcceptMission();
             break;
         case 3:
-            await typeColor("...", 55, color_cyan);
-            await typeColor("You like being silent a little bit too much for me.", 55, color_cyan);
-            await typeColor("I need someone that can check out for me outside of the tower. If you can't speak, you're no fit for the job.", 55, color_cyan);
-            await typeColor("Forget what I said. I will find someone else.", 55, color_cyan);
+            await typeColor("...", 55, color_red);
+            await typeColor("You like being silent a little bit too much for me.", 55, color_red);
+            await typeColor("I need someone that can check out for me outside of the tower. If you can't speak, you're no fit for the job.", 55, color_red);
+            await typeColor("Forget what I said. I will find someone else.", 55, color_red);
             await End(2);
             break;
         case 4:
-            await typeColor("...", 55, color_cyan);
-            await typeColor("You are so annoying.", 55, color_cyan);
-            await typeColor("I was going to ask you to come with me but... nevermind I don't want you anymore", 55, color_cyan);
-            await typeColor("Good luck getting out of poverty looser.", 55, color_cyan);
+            await typeColor("...", 55, color_red);
+            await typeColor("You are so annoying.", 55, color_red);
+            await typeColor("I was going to ask you to come with me but... nevermind I don't want you anymore", 55, color_red);
+            await typeColor("Good luck getting out of poverty looser.", 55, color_red);
             await End(1);
             break;
         case 5:
-            await typeColor("Huh sure, whatever you say...", 55, color_cyan);
-            await typeColor("Alright well... my plan is to go in the tower, get out gold from the princes dead body and I need you to make sure nobody goes in.", 55, color_cyan);
+            await typeColor("Huh sure, whatever you say...", 55, color_red);
+            await typeColor("Alright well... my plan is to go in the tower, get out gold from the princes dead body and I need you to make sure nobody goes in.", 55, color_red);
             await AcceptMission();
             break;
         default :
-            await typeColor("Okay I don't know if you are playing with me saying whatever and speaking freaking chinese but I'm done.", 55, color_cyan);
-            await typeColor("You are so annoying. Forget everything I said.", 55, color_cyan);
+            await typeColor("Okay I don't know if you are playing with me saying whatever and speaking freaking chinese but I'm done.", 55, color_red);
+            await typeColor("You are so annoying. Forget everything I said.", 55, color_red);
             await End(3);
             break;
     }
@@ -408,23 +409,23 @@ async function AcceptMission_result(response){
     console.log("\n");
     switch (response) {
         case 1:
-            await typeColor("Great let's go then, we have to walk two hours in the forest before getting to the tower", 55, color_cyan);
+            await typeColor("Great let's go then, we have to walk two hours in the forest before getting to the tower", 55, color_red);
             break;
         case 2:
-            await typeColor("No. Choose now, because I'm leaving towards to tower right away.", 55, color_cyan);
+            await typeColor("No. Choose now, because I'm leaving towards to tower right away.", 55, color_red);
             break;
         case 3:
-            await typeColor("Oh. Well stay poor then. Goodbye.", 55, color_cyan);
+            await typeColor("Oh. Well stay poor then. Goodbye.", 55, color_red);
             await End(4);
             break;
         case 4:
-            await typeColor("Is that a yes or no ?", 55, color_cyan);
-            await typeColor("Ok you now what ? I need someone that can answer when asked something, so forget it. I'll find someone else", 55, color_cyan);
+            await typeColor("Is that a yes or no ?", 55, color_red);
+            await typeColor("Ok you now what ? I need someone that can answer when asked something, so forget it. I'll find someone else", 55, color_red);
             await End(2);
             break;
         case 5:
-            await typeColor("What does that mean ?", 55, color_cyan);
-            await typeColor("Ok you now what ? I need someone that can answer clearly when asked something, so forget it. I'll find someone else", 55, color_cyan);
+            await typeColor("What does that mean ?", 55, color_red);
+            await typeColor("Ok you now what ? I need someone that can answer clearly when asked something, so forget it. I'll find someone else", 55, color_red);
             await End(3);
             break;
     }
